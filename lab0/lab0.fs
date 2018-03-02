@@ -5,7 +5,7 @@ open System.Net
 open System.Collections.Specialized
 
 let (email, name) = ("", "") // Адрес почты и фамилия с инициалами
-let university = "" // ВУЗ ( MEPhI | MIPT )
+let university = ["MEPhI"; "MIPT"].[-1] // ВУЗ ( MEPhI | MIPT )
 let group = "" // Группа
 
 let pascal c r = 1 // а тут решение
