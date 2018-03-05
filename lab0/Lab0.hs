@@ -25,4 +25,4 @@ main =
   let req = urlEncodedBody [("email", email), ("name", name), ("university", university), ("group", group), ("content", printIt 20)] $ initReq
   manager <- newManager defaultManagerSettings
   response <- httpLbs req manager
-  L.putStr $ responseBody response
+  L.putStrLn $ responseBody response
