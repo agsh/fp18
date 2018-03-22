@@ -7,6 +7,7 @@ import System.Environment
 import System.Directory
 import Control.Monad
 import Network.HTTP.Conduit
+import Network.HTTP.Client (defaultManagerSettings)
 import qualified Data.ByteString.Lazy.Char8 as L
 import Data.Text.Encoding
 import qualified Data.Text as T
@@ -27,11 +28,11 @@ tailorA :: Float -> Result
 tailorA x = (x, 0)
 
 printTailor = mapM_ putStrLn $ 
-	map 
-		(\ x -> 
-			let ((firstRes, firstCou), (secondRes, secondCou)) = (tailor x, tailorA x) 
-			in show x ++ "\t" ++ show firstRes ++ "\t" ++ show firstCou ++ "\t" ++ show secondRes ++ "\t" ++ show secondCou ++ "\t" ++ show (fTailor x)) 
-		[a, a + (b - a) / n .. b]
+  map 
+    (\ x -> 
+      let ((firstRes, firstCou), (secondRes, secondCou)) = (tailor x, tailorA x) 
+      in show x ++ "\t" ++ show firstRes ++ "\t" ++ show firstCou ++ "\t" ++ show secondRes ++ "\t" ++ show secondCou ++ "\t" ++ show (fTailor x)) 
+    [a, a + (b - a) / n .. b]
 
 -- *** Вторая часть
 
@@ -44,20 +45,21 @@ newton :: (Float -> Float) -> Float -> Float -> Result
 newton f a b = (42, 0)
 
 dichotomy =    
-	--для функций с аккумулятором удобно ставить его в начало
-	let dichotomyA i f a b = (42, 0)
-	in dichotomyA 0 -- чтобы воспользоваться каррированием
+  --для функций с аккумулятором удобно ставить его в начало
+  let dichotomyA i f a b = (42, 0)
+  in dichotomyA 0 -- чтобы воспользоваться каррированием
 
 printSolve =
-	mapM_ putStrLn $ map (\f -> show $ f fSolve a b) [iter, newton, dichotomy]
+  mapM_ putStrLn $ map (\f -> show $ f fSolve a b) [iter, newton, dichotomy]
 
 main = withSocketsDo $ do
   dir <- getCurrentDirectory
-  initReq <- parseUrl "http://91.239.142.110:13666/lab1"
+  initReq <- parseRequest "POST http://91.239.142.110:13666/lab1"
   handle <- openFile (dir ++ "/Lab1.hs") ReadMode
   hSetEncoding handle utf8_bom
   content <- hGetContents handle
-  let req = urlEncodedBody [("email", email), ("content", encodeUtf8 $ T.pack content) ] $ initReq { method = "POST" }
-  response <- withManager $ httpLbs req
+  let req = urlEncodedBody [("email", email), ("content", encodeUtf8 $ T.pack content) ] $ initReq
+  manager <- newManager defaultManagerSettings
+  response <- httpLbs req manager
   hClose handle
   L.putStrLn $ responseBody response
