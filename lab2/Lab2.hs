@@ -62,7 +62,7 @@ generate = evalState generate' (mkStdGen 0)
 main :: IO()
 main = withSocketsDo $ do
   dir <- getCurrentDirectory
-  initReq <- parseRequest "POST http://91.239.142.110:13666/lab1"
+  initReq <- parseRequest "POST http://91.239.142.110:13666/lab2"
   handle <- openFile (dir ++ "/Lab2.hs") ReadMode
   hSetEncoding handle utf8_bom
   content <- hGetContents handle
