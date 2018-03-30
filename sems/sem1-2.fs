@@ -496,6 +496,225 @@ let rec reverse list =
   | (x :: xs) -> reverse xs @ [x]
 
 
+// factorial
+let rec fac = function
+  | n when n <= 0I -> 1I
+  | n -> (n * fac (n-1I))
+
+fac 300000I
+
+// аккумулятор!
+
+let fac = 
+  let rec fac' acc = function
+    | n when n <= 0 -> acc
+    | n -> fac' (acc * n) (n-1)
+  fac' 1
+
+fac 300000I
+
+let fac = 
+  let rec fac' acc n = 
+    match n with
+    | n when n <= 0I -> acc
+    | n -> fac' (acc * n) (n-1I)
+  fac' 1I
+
+fac 300000I
+
+List.rev [1;2;3]
+
+reverse [1..4]
 
 
-///// STOP
+
+
+let reverse list = 
+  let rec reverse' acc list = 
+    match list with 
+      | [] -> acc
+      | (x::xs) -> reverse' (x::acc) xs
+  reverse' [] list
+
+reverse [1..4] 
+reverse []
+
+let reverse<'a> = 
+  let rec reverse' acc = function
+    | [] -> acc
+    | (x::xs) -> reverse' (x::acc) xs
+  reverse' []
+
+
+reverse [1;2;3]
+reverse []
+
+// fib - через аккумулятор сами
+
+let rec fib n =
+  match n with
+    | n when n <= 2 -> 1
+    | n -> fib (n-1) + fib (n-2)
+
+Seq.initInfinite (fun i -> (i+1)) |> Seq.map fib |> Seq.iter (fun num -> printfn "%A" num)
+
+
+
+
+
+let fib n =
+    let rec fib' a b = function
+        | n when n <= 0I -> a
+        | n -> fib' b (a + b) (n - 1I)
+    fib' 1I 1I n
+  
+
+Seq.initInfinite (fun i -> bigint (i+1)) |> Seq.map fib |> Seq.iter (fun num -> printfn "%A" num)
+
+
+let rec private fib' a b = function
+  | 0 -> a
+  | n -> fib' b (a+b) (n-1)
+
+let fib = fib' 1 1
+
+// В F# строки как строки .net, а не список символов
+let explode (s:string) = [for c in s -> c]
+explode "sfsdaf"
+
+['a']
+
+(*
+Функция delete :: char -> ( char list -> char list ), кото-
+рая принимает на вход строку и символ и возвращает
+строку, в которой удалены все вхождения символа. При-
+мер: delete ’l’ "Hello world!" должно возвращать "Heo word!".
+Функция substitute :: char -> char -> char list -> char list,
+которая заменяет в строке указанный символ на заданный.
+Пример: substitute ’e’ ’i’ "eigenvalue" возвращает
+"iiginvalui" 
+*)
+
+let delete ch = List.filter (fun c -> c <> ch)
+
+let implode list = List.fold (fun a b -> a.ToString() + b.ToString()) "" list
+
+implode ['a';'b';'c']
+
+
+
+
+
+
+
+
+
+let rec delete symbol = function
+    | [] -> []
+    | x :: xs when x = symbol -> delete symbol xs
+    | x :: xs -> x :: (delete symbol xs) 
+
+delete 'l' (explode "Hello!")
+    
+let delete symbol list =
+    let rec delete' acc = function
+        | [] -> acc
+        | x :: xs when x = symbol -> delete' acc xs 
+        // | x :: xs -> delete' (acc @ [x]) xs
+        | x :: xs -> delete' (x :: acc) xs
+    List.rev (delete' [] list)
+
+let rec substitude symbol replace = function
+    | [] -> []
+    | x :: xs when x = symbol -> replace :: (substitude symbol replace xs)
+    | x :: xs -> x :: (substitude symbol replace xs) 
+
+let substitude symbol replace list =
+    let rec substitude' acc = function
+        | [] -> acc
+        | x :: xs when x = symbol -> substitude' (replace :: acc) xs
+        | x :: xs -> substitude' (x :: acc) xs
+    List.rev (substitude' [] list)
+
+substitude 'l' 'x' (explode "Hello")
+
+implode (substitude 'l' 'm' (explode "Hello!"))
+
+let substitude inn out list = List.map (fun ch -> if ch = inn then out else ch) list
+
+(*
+
+Write a recursive function which verifies the balancing of parentheses
+in a string, which we represent as a List[Char] not a String. For
+example, the function should return true for the following strings:
+(if (zero? x) max (/ 1 x))
+I told him (that it’s not (yet) done). (But he wasn’t listening)
+The function should return false for the following strings:
+:-)
+())(
+The last example shows that it’s not enough to verify that a string
+contains the same number of opening and closing parentheses.
+balance :: String → Bool
+
+*)
+
+
+let balance list = 
+    let rec balance' list n = 
+        match (list, n) with
+        | ([], 0) -> true
+        | ([], _) -> false
+        | (_, n) when n < 0 -> false
+        | (x::xs, n) when x = '(' -> balance' xs (n + 1)
+        | (x::xs, n) when x = ')' -> balance' xs (n - 1)
+        | (x::xs, n) -> balance' xs n
+    balance' list 0      
+
+balance (explode "(if (zero? x) max (/ 1 x))")
+balance (explode "())(")
+
+reverseAll — функция, получающая на вход
+списочную структуру и обращающая все её
+элементы, а также её саму.
+// 'a list list -> 'a list list
+
+reverseAll [[1;2];[3;4;5];[6]] //=== [[6];[5;4;3];[2;1]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+let reverseAll list = list |> List.map List.rev |> List.rev  
+
+
+
+// indexOf с применением Just
+
+// 'a' -> 'a list -> int option
+printIt 'a' (explode "sunday") // Some 4
+printIt 'z' (explode "sunday") // None
+
+let indexOf element list =
+  let rec indexOf' list pos =
+    match (list) with
+    | [] -> None
+    | x :: xs when x = element -> Some pos
+    | x :: xs -> indexOf' xs (pos + 1)
+  indexOf' list 0
+
+let printIt char string = 
+  match (indexOf char string) with
+    | None -> "Char wasn't found"
+    | Some position -> "Char position: " + position.ToString() 
+
+
+
+[Some 16; None]
