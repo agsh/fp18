@@ -11,7 +11,7 @@ type JSON = Object of (string * JSON) list
 
 let parse str = if str = "{}" then Object [] else failwith "Wrong JSON structure!"
 
-let lab3 = function
+let lab2 = function
   | Object list -> 0
 
 let stringify = function
