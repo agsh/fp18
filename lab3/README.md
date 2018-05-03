@@ -40,5 +40,10 @@
 |20|Кто, кроме anonymous'а оставил больше всего комментариев в [этой теме](https://www.linux.org.ru/news/google/11404954)?|
 |21|Какой тэг самый популярный среди ста самых популярных пакетов на [NuGet](https://www.nuget.org/stats/packages)?
 |22|В каком месяце какого года было больше всего вопросов в [рассылке эрланга](http://erlang.org/pipermail/erlang-questions/)?|
-
+|23|Какой тэг самый популярный среди последних 500 [вопросов](https://stackoverflow.com/questions) на stackoverflow?|
+|24|У какого вопроса больше всего ответов среди последних 500 [вопросов](https://stackoverflow.com/questions) на stackoverflow?|
+|25|Узнать количество [комментариев](https://www.championat.com/news/1.html) за последний день|
+|26|Найти самую высокую зарплату предлагаемую [программисту на Java](https://hh.ru/search/vacancy?text=Java&only_with_salary=false&area=1&enable_snippets=true&clusters=true&salary=)|
+|27|В какой [индустрии](https://hh.ru/employers_company) больше всего вакансий?
+|28|Рядом с какой [станцией метро](https://hh.ru/metro) больше всего вакансий?
 
