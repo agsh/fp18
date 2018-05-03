@@ -28,5 +28,17 @@
 |8|Составить список 50 самых комментируемых [преподавателей](http://wikimipt.org/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9F%D1%80%D0%B5%D0%BF%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8_%D0%BF%D0%BE_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82%D1%83)|
 |9|Составить список 50 комментариев для [преподавателей](http://wikimipt.org/index.php?title=%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9F%D1%80%D0%B5%D0%BF%D0%BE%D0%B4%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B8_%D0%BF%D0%BE_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82%D1%83) с самой высокой оценкой|
 |10|Узнать, в каких группах больше всего тем с пометкой "Важно:" на форуме [sql.ru](http://www.sql.ru/forum)|
+|11|Узнать, в какой [теме](https://www.opennet.ru/search.shtml?words=Haskell&restrict=forum&sort=score&exclude=) больше всего комментариев|
+|12|Узнать, от какой библиотеки зависит больше всего запрещённых [пакетов на hackage](http://hackage.haskell.org/packages/deprecated)|
+|13|Найти пять самых скачиваемых пакетов за всё время на [hackage](http://hackage.haskell.org/packages/top)|
+|14|Найти пять самых комментируемых [тем](https://archive.codeplex.com/?p=nuget) про NuGet
+|15|Попытаться найти по [списку языков программирования](http://en.wikipedia.org/wiki/List_of_programming_languages) википедии человека, который разработал больше всего ЯП|
+|16|Сколько пакетов в [Hackage](http://hackage.haskell.org/packages/) относятся к нескольким категориям?
+|17|У какого факультета ФИВТ больше всего [кафедр](http://wikimipt.org/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F:%D0%9A%D0%B0%D1%84%D0%B5%D0%B4%D1%80%D1%8B_%D0%BF%D0%BE_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82%D1%83)?
+|18|Узнать, в каком разделе форума [sql.ru](http://www.sql.ru/forum/sqlru-3-days) больше всего вопросов за последние 3 дня|
+|19|Узнать, какое количество [вопросов](https://toster.ru/questions), заданных за последние 5 часов, остались без ответа|
+|20|Кто, кроме anonymous'а оставил больше всего комментариев в [этой теме](https://www.linux.org.ru/news/google/11404954)?|
+|21|Какой тэг самый популярный среди ста самых популярных пакетов на [NuGet](https://www.nuget.org/stats/packages)?
+|22|В каком месяце какого года было больше всего вопросов в [рассылке эрланга](http://erlang.org/pipermail/erlang-questions/)?|
 
 
